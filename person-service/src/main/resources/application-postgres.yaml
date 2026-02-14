@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: ${JDBC_URL:jdbc:postgresql://localhost:5432/persondb}
+    username: ${JDBC_USERNAME:person}
+    password: ${JDBC_PASSWORD:person}
+
+person-service:
+  repository:
+    type: ${PERSON_SERVICE_REPOSITORY_TYPE:jdbc}

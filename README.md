@@ -197,6 +197,13 @@ Datasource (used when `PERSON_SERVICE_REPOSITORY_TYPE=jdbc`):
 - `JDBC_USERNAME`
 - `JDBC_PASSWORD`
 
+PostgreSQL (local dev) is available via `person-service/docker-compose.yml`:
+
+```bash
+docker compose up -d
+SPRING_PROFILES_ACTIVE=postgres mvn -f person-service/pom.xml spring-boot:run
+```
+
 API key (optional):
 
 - `PERSON_SERVICE_API_KEY_REQUIRED` (default: `false`)
