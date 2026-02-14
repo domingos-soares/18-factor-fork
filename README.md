@@ -13,31 +13,31 @@ This methodology extends the original 15 factors to **18 factors organized in 4 
 ## The 18 Factors
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────────────────┐
-│                              TIER 4: INTELLIGENCE                                       │
-│                                                                                         │
-│  15 Model Lifecycle     16 Prompt & Context    17 Agent Orchestration    18 AI Economics │
-│     Management             Engineering            & Bounded Autonomy       & Cost Arch.  │
-├─────────────────────────────────────────────────────────────────────────────────────────┤
-│                              TIER 3: OPERATION                                          │
-│                                                                                         │
-│   9 Disposability      10 Intelligent         11 Environment    12 Stateless Processes  │
-│     & Graceful            Backing Services       Parity            + Intelligent Cache   │
-│     Lifecycle                                                                           │
-│  13 Adaptive           14 Full-Spectrum                                                 │
-│     Concurrency           Observability                                                 │
-├─────────────────────────────────────────────────────────────────────────────────────────┤
-│                              TIER 2: CONSTRUCTION                                       │
-│                                                                                         │
-│   5 Immutable Build     6 Evaluation-Driven    7 Responsible         8 Identity, Access │
-│     Pipeline              Development            AI by Design          & Trust           │
-├─────────────────────────────────────────────────────────────────────────────────────────┤
-│                              TIER 1: FOUNDATION                                         │
-│                                                                                         │
-│   1 Declarative         2 Contract-First       3 Dependency          4 Configuration,   │
-│     Codebase              Interfaces             Management            Credentials &    │
-│                                                                        Context          │
-└─────────────────────────────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│                            TIER 4: INTELLIGENCE                                  │
+│                                                                                  │
+│  15 Model Lifecycle   16 Prompt & Context  17 Agent Orch. &   18 AI Economics &  │
+│     Management           Engineering          Bounded Autonomy   Cost Arch.      │
+├──────────────────────────────────────────────────────────────────────────────────┤
+│                             TIER 3: OPERATION                                    │
+│                                                                                  │
+│   9 Disposability &  10 Intelligent       11 Environment     12 Stateless Proc.  │
+│     Graceful Lifecycle   Backing Services    Parity             + Smart Cache    │
+│                                                                                  │
+│  13 Adaptive          14 Full-Spectrum                                           │
+│     Concurrency          Observability                                           │
+├──────────────────────────────────────────────────────────────────────────────────┤
+│                            TIER 2: CONSTRUCTION                                  │
+│                                                                                  │
+│   5 Immutable Build    6 Evaluation-Driven  7 Responsible     8 Identity, Access │
+│     Pipeline             Development          AI by Design      & Trust          │
+├──────────────────────────────────────────────────────────────────────────────────┤
+│                             TIER 1: FOUNDATION                                   │
+│                                                                                  │
+│   1 Declarative        2 Contract-First     3 Dependency      4 Configuration,   │
+│     Codebase             Interfaces           Management        Credentials &    │
+│                                                                 Context          │
+└──────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
