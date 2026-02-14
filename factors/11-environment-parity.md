@@ -143,6 +143,46 @@ class EnvironmentParityChecker:
                     self.logger.warning(f"PARITY VIOLATION: {check} — {result.detail}")
 ```
 
+### Ephemeral Environments for Autonomous Validation
+
+AI coding agents can work around the clock, generating code across multiple branches and producing several candidate solutions for the same problem. Validating this volume of changes requires non-production environments that spin up on demand, run the full evaluation and test suite, and tear down automatically — without competing for shared staging resources or blocking other work.
+
+Ephemeral environments provide production-parity validation at branch level. Each AI-generated branch gets its own isolated environment with the same model versions, configurations, and representative data. This enables parallel validation of competing solutions and gives human reviewers confidence that what the agent built actually works before they ever look at the code.
+
+```yaml
+# ephemeral-environment.yaml
+ephemeral_environments:
+  trigger:
+    - pull_request
+    - agent_branch  # AI agent creates a branch → environment spins up
+
+  provisioning:
+    method: kubernetes_namespace  # or serverless, VM, container
+    ttl: 4h                      # auto-destroy after 4 hours of inactivity
+    max_concurrent: 10           # limit parallel environments
+
+  parity:
+    model_versions: production   # same model versions as prod
+    inference_config: production # same temperature, tokens, safety
+    vector_db: staging_snapshot  # representative data sample
+    safety_filters: enabled      # never skip guardrails
+
+  validation:
+    run_on_create:
+      - unit_tests
+      - integration_tests
+      - eval_suite              # Factor 6 evaluation gates
+      - safety_checks           # Factor 7 guardrails
+      - cost_estimation         # Factor 18 budget check
+    report_to: pull_request     # post results as PR comment
+
+  cost_controls:
+    budget_per_environment_usd: 10
+    shutdown_on_budget_exceeded: true
+```
+
+This pattern is especially powerful when combined with Factor 17 (Agent Orchestration): an autonomous agent creates a branch, the ephemeral environment validates it, and the results feed back to the agent for iteration — or surface to a human reviewer when the solution passes all gates.
+
 ### Accepted Divergences
 Some differences are intentional and acceptable if documented:
 
@@ -168,6 +208,6 @@ What should **never** diverge:
 - [ ] Embedding models are consistent across environments
 - [ ] Intentional environment divergences are documented with rationale
 - [ ] Automated parity checks compare configurations across environments
-- [ ] Local development has a clear path to validate changes against production-like conditions
+- [ ] Ephemeral environments spin up per branch to validate AI-generated code with production parity
 - [ ] Staging data is refreshed on a regular cadence
 - [ ] The evaluation suite (Factor 6) runs against the same model configuration used in production
