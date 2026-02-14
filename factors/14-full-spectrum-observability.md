@@ -210,6 +210,58 @@ alerts:
     message: "Approaching AI provider rate limit"
 ```
 
+### Business Observability
+
+Technical metrics tell you *how* your AI features are performing. Business observability tells you *whether they matter*. Without this link, cost dashboards are just scary numbers and quality scores are vanity metrics.
+
+Connect AI operations to business outcomes:
+
+```yaml
+# Business Observability Metrics
+metrics:
+  # User Adoption
+  - name: ai_feature_adoption_rate
+    type: gauge
+    labels: [feature, user_segment]
+    description: "Percentage of eligible users actively using AI feature"
+
+  - name: ai_feature_fallback_total
+    type: counter
+    labels: [feature, reason]
+    description: "Users who abandoned AI output and did the task manually"
+
+  # Task Effectiveness
+  - name: ai_task_completion_rate
+    type: gauge
+    labels: [feature]
+    description: "Tasks successfully completed with AI assistance vs. total attempts"
+
+  - name: ai_time_saved_seconds
+    type: histogram
+    labels: [feature, user_segment]
+    description: "Time saved per task compared to manual baseline"
+
+  # Revenue & ROI
+  - name: ai_influenced_revenue_usd
+    type: counter
+    labels: [feature, tenant]
+    description: "Revenue from transactions where AI feature was used"
+
+  - name: ai_feature_roi
+    type: gauge
+    labels: [feature]
+    description: "ROI = (business_value - ai_cost) / ai_cost"
+```
+
+**Business Dashboard** (complements the technical dashboards above)
+- Feature adoption rate over time — are users actually using it?
+- AI vs. manual fallback rate — when users reject AI output, why?
+- Time saved per task by feature — quantified productivity gain
+- Revenue influenced by AI features — ties AI cost to business value
+- ROI per feature — cost from Factor 18 vs. business value generated
+
+This closes the loop between Factor 14 (observability) and Factor 18 (AI Economics): cost without business context is just a number, and business value without cost context is just hope.
+
 ### Observability Anti-Patterns
 - **Logging prompts and completions in plain text**: These may contain PII. Log hashes or redacted versions.
 - **No cost attribution**: If you can't attribute cost to features, teams, or tenants, you can't optimize.
@@ -226,5 +278,5 @@ alerts:
 - [ ] Cost dashboards show spend by feature, model, and tenant with budget tracking
 - [ ] Alert rules cover cost anomalies, quality regressions, safety spikes, and provider degradation
 - [ ] Prompt and completion logging respects PII policies (redacted or hashed)
-- [ ] Cache effectiveness (hit rates, cost savings) is measured
+- [ ] Business outcomes (adoption, task completion, revenue impact) are tracked per AI feature
 - [ ] Observability data is retained long enough to support trend analysis and incident investigation
