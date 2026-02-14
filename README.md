@@ -152,6 +152,78 @@ This is a living methodology. As AI capabilities, tooling, and best practices ev
 
 ---
 
+## Example: `person-service` (Java / Spring Boot)
+
+This repository includes a small Java microservice under `person-service/` that serves `Person` objects via a REST API. It exists as a concrete reference implementation of the operational and engineering practices described by the 18 factors.
+
+### Run locally
+
+From `person-service/`:
+
+```bash
+mvn clean test
+mvn spring-boot:run
+```
+
+### Useful URLs
+
+- **Swagger UI**: `http://localhost:8080/swagger-ui/index.html`
+- **OpenAPI YAML (contract)**: `http://localhost:8080/openapi.yaml`
+- **Health**: `http://localhost:8080/actuator/health`
+- **Prometheus metrics**: `http://localhost:8080/actuator/prometheus`
+
+### REST endpoints
+
+- `GET /persons`
+- `POST /persons`
+- `GET /persons/{id}`
+- `PUT /persons/{id}`
+- `DELETE /persons/{id}`
+
+### Configuration (environment variables)
+
+By default the service runs with an in-memory repository.
+
+- **Port**: `PORT` (default: `8080`)
+
+Repository selection:
+
+- **In-memory (default)**: `PERSON_SERVICE_REPOSITORY_TYPE=inmemory`
+- **JDBC (Flyway + datasource)**: `PERSON_SERVICE_REPOSITORY_TYPE=jdbc`
+
+Datasource (used when `PERSON_SERVICE_REPOSITORY_TYPE=jdbc`):
+
+- `JDBC_URL` (default: H2 in-memory)
+- `JDBC_USERNAME`
+- `JDBC_PASSWORD`
+
+API key (optional):
+
+- `PERSON_SERVICE_API_KEY_REQUIRED` (default: `false`)
+- `PERSON_SERVICE_API_KEY`
+
+Local rate limiting and per-request budget guardrails:
+
+- `PERSON_SERVICE_RPS` (default: `50`)
+- `PERSON_SERVICE_MAX_COST_PER_REQUEST_USD` (default: `0.01`)
+
+### Factor alignment (high level)
+
+- **Factor 1**: all code/config artifacts are versioned in the repo (service is a subfolder).
+- **Factor 2**: OpenAPI is treated as the API contract (`person-service/src/main/resources/openapi/openapi.yaml`).
+- **Factor 3**: dependencies pinned in `person-service/pom.xml`.
+- **Factor 4**: runtime config via environment variables; secrets (API key, DB password) are not committed.
+- **Factor 5**: build once via Maven; run via `mvn spring-boot:run` or packaged jar.
+- **Factor 9**: graceful shutdown enabled.
+- **Factor 10**: backing service (repository) is swappable via config (in-memory vs JDBC/Postgres).
+- **Factor 11**: dev/prod parity is achieved by keeping behavior in code and varying only config.
+- **Factor 12**: stateless HTTP layer; state is in the backing service.
+- **Factor 14**: structured JSON logs + actuator metrics.
+
+AI-specific factors (6–8, 15–18) are only lightly represented here because this service is intentionally non-AI.
+
+---
+
 ## License
 
 This work is licensed under [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/).
