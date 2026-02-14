@@ -201,7 +201,19 @@ PostgreSQL (local dev) is available via `person-service/docker-compose.yml`:
 
 ```bash
 docker compose up -d
-SPRING_PROFILES_ACTIVE=postgres mvn -f person-service/pom.xml spring-boot:run
+SPRING_PROFILES_ACTIVE=postgres mvn spring-boot:run
+```
+
+Note: for PostgreSQL 16+, Flyway requires `flyway-database-postgresql` on the classpath (already included in `person-service/pom.xml`).
+
+Quick verification:
+
+```bash
+curl -sS -X POST http://localhost:8080/persons \
+  -H 'Content-Type: application/json' \
+  -d '{"firstName":"Ada","lastName":"Lovelace","email":"ada@example.com"}'
+
+curl -sS http://localhost:8080/persons
 ```
 
 API key (optional):
