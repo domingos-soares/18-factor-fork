@@ -4,7 +4,7 @@
 
 The original [12-Factor App](https://12factor.net) (Heroku, 2011) and Kevin Hoffman's [Beyond the Twelve-Factor App](https://www.oreilly.com/library/view/beyond-the-twelve-factor/9781492042631/) (2016, 15 factors) defined the principles of cloud-native application development. Those principles were written before the AI revolution.
 
-**The 18-Factor App** reimagines cloud-native application principles for 2025 and beyond, covering both **AI-assisted development** (using AI tools to build software) and **AI-native applications** (software that incorporates AI as a core capability).
+**The 18-Factor App** reimagines cloud-native application principles for the AI era, covering both **AI-assisted development** (using AI tools to build software) and **AI-native applications** (software that incorporates AI as a core capability).
 
 This methodology extends the original 15 factors to **18 factors organized in 4 tiers**, updating existing principles for the AI era and introducing new factors for evaluation, responsible AI, model management, prompt engineering, agent orchestration, and AI economics.
 

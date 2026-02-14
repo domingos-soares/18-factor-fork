@@ -165,6 +165,31 @@ Make AI decisions auditable:
 - **Confidence indicators**: Surface confidence scores to users and downstream systems.
 - **Appeal mechanisms**: Provide paths for users to contest AI decisions.
 
+### Data Governance for AI
+AI systems consume, generate, and store data with unique governance challenges:
+
+```yaml
+data_governance:
+  training_data:
+    provenance: documented        # track origin of all training/fine-tuning data
+    licensing: verified           # confirm data usage rights before training
+    pii_handling: anonymized      # no PII in training datasets without consent
+
+  conversation_logs:
+    retention_days: 90            # define retention period per regulation
+    right_to_erasure: supported   # users can request deletion of their data
+    use_for_training: opt_in      # never use production logs for training without consent
+
+  rag_sources:
+    provenance: tracked           # document source, update date, license
+    refresh_cadence: weekly       # stale data degrades quality
+    access_controls: enforced     # respect source document permissions
+
+  synthetic_data:
+    labeled_as_synthetic: true    # never mix synthetic with real without labeling
+    generation_method: documented # reproducibility
+```
+
 ### Incident Response for AI
 AI incidents require specific response procedures:
 
@@ -189,10 +214,10 @@ ai_incident_playbook:
 - [ ] Input guardrails detect and handle prompt injection attempts
 - [ ] PII is detected at input and output boundaries with configurable handling policies
 - [ ] Content safety classifiers screen AI outputs before serving to users
-- [ ] Bias monitoring runs continuously across demographic dimensions
+- [ ] Bias monitoring evaluates output quality, refusal rates, and sentiment across demographic segments on a defined cadence
 - [ ] Human-in-the-loop gates are defined for high-risk actions and low-confidence outputs
 - [ ] AI-generated content is clearly disclosed to users
 - [ ] RAG outputs include source attribution
-- [ ] Reasoning traces are logged for auditability
+- [ ] Data governance policies cover provenance, retention, right to erasure, and training data licensing
 - [ ] An AI incident response playbook exists and is practiced
 - [ ] Safety evaluations are part of the CI pipeline (Factor 5) and production monitoring (Factor 14)

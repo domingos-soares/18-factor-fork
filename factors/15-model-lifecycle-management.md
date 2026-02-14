@@ -45,7 +45,7 @@ models:
 
   summarization-candidate:
     provider: anthropic
-    model_id: claude-sonnet-4-5-20250929  # newer version
+    model_id: claude-sonnet-4-6-20260115  # newer version
     purpose: "Document summarization — evaluation candidate"
     status: evaluating
     eval_scores:

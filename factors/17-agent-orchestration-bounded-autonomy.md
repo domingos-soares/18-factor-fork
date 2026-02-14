@@ -8,6 +8,8 @@ AI agents — systems that can plan, use tools, and take actions autonomously �
 
 The temptation is to give agents broad capabilities and rely on the model's judgment to use them wisely. This is the architectural equivalent of running everything as root. Bounded autonomy means agents have explicit, enforced limits on what they can do, how much they can spend, how long they can run, and when they must ask for human approval. These boundaries are architectural, not prompt-based — they're enforced by code, not by instructions the model might ignore.
 
+> **Relationship with Factor 8 (Identity, Access, and Trust)**: Factor 8 defines *who* the agent is and *what* it's allowed to do — identity, permissions, and trust boundaries. This factor defines *how* the agent operates within those boundaries — orchestration patterns, execution budgets, checkpointing, and runtime guardrails. Factor 8 is the authorization model; Factor 17 is the execution model.
+
 ## What This Replaces
 
 **New — no direct predecessor.** The original 12/15-factor methodology had no concept of autonomous AI agents, as these are a recent architectural pattern in AI applications.

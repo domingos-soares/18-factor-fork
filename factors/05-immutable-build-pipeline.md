@@ -10,7 +10,7 @@ AI applications raise the stakes. A "build" now includes more than compiling cod
 
 ## What This Replaces
 
-**Original Factor #4 / Beyond 15 #4: Build, Release, Run** — "Strictly separate build and run stages."
+**Original Factor #5 / Beyond 15 #4: Build, Release, Run** — "Strictly separate build and run stages."
 
 This update retains the immutability principle and extends the pipeline to include:
 

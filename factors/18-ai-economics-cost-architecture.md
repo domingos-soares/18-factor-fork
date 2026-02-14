@@ -6,7 +6,7 @@
 
 Traditional cloud applications have relatively predictable cost profiles. You provision resources (compute, storage, bandwidth) and pay whether they're used or not. Costs are infrastructure-driven and scale with provisioned capacity. Optimization means right-sizing resources and reducing waste.
 
-AI applications introduce usage-based costs that scale with *demand*, not capacity. Every LLM call costs money — measured in tokens consumed. A single user request that triggers a complex agent workflow can cost dollars, not fractions of a cent. Costs vary by model (GPT-4o vs. Haiku differ by 50x), by task complexity (a simple classification vs. a multi-step research task), and by caching effectiveness. Without cost architecture, AI features can silently become the dominant line item in your cloud bill — or worse, a runaway cost incident can drain budgets in hours.
+AI applications introduce usage-based costs that scale with *demand*, not capacity. Every LLM call costs money — measured in tokens consumed. A single user request that triggers a complex agent workflow can cost dollars, not fractions of a cent. Costs vary by orders of magnitude across model tiers (frontier vs. lightweight models), by task complexity (a simple classification vs. a multi-step research task), and by caching effectiveness. Without cost architecture, AI features can silently become the dominant line item in your cloud bill — or worse, a runaway cost incident can drain budgets in hours.
 
 ## What This Replaces
 
